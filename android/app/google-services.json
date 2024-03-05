@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "790051385168",
+    "project_id": "movie-tracker-8b562",
+    "storage_bucket": "movie-tracker-8b562.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:790051385168:android:b08a2870ff1a8b91454655",
+        "android_client_info": {
+          "package_name": "com.example.cinemate"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCeEI52sSoGCi0Gxz4H7xp31BEOVDfmxyQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
