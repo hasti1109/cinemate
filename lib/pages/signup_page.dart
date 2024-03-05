@@ -74,7 +74,7 @@ class _SignUpPageState extends State<SignUpPage> {
               //name input
               MyTextField(myController: _nameController, inputName: 'Name', hideText: false, onChanged: (){}),
 
-              const SizedBox(height: 40,),
+              const SizedBox(height: 20,),
 
               //email input
               MyTextField(myController: _emailController, inputName: 'Email', hideText: false, onChanged: (){}),
@@ -83,6 +83,8 @@ class _SignUpPageState extends State<SignUpPage> {
 
               //password input
               MyTextField(myController: _passwordController, inputName: 'Create Password', hideText: true, onChanged: (){}),
+
+              const SizedBox(height: 30,),
 
               //sign up button
               Padding(
@@ -110,7 +112,7 @@ class _SignUpPageState extends State<SignUpPage> {
                   ),
                 ),
               ),
-              const SizedBox(height: 20,),
+              const SizedBox(height: 10,),
 
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
@@ -132,19 +134,33 @@ class _SignUpPageState extends State<SignUpPage> {
                 ],
               ),
 
-              const SizedBox(height: 20,),
+              const SizedBox(height: 40,),
 
+              //or
               Row(
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
-                  Divider(height: 1,),
-                  Text('or'),
-                  Divider(height: 1,),
+                  Expanded(
+                    child: Padding(
+                      padding: const EdgeInsets.fromLTRB(25,5,5,0),
+                      child: Divider(thickness: 1, color: Colors.grey.shade600),
+                    ),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 8.0),
+                    child: Text('or', style: TextStyle(color: Colors.grey.shade600),),
+                  ),
+                  Expanded(
+                    child: Padding(
+                      padding: const EdgeInsets.fromLTRB(5,5,25,0),
+                      child: Divider(thickness: 1, color: Colors.grey.shade600),
+                    ),
+                  ),
                 ],
               ),
 
-              const SizedBox(height: 20,),
+              const SizedBox(height: 40,),
 
+              //google signin
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 25.0),
                 child: GestureDetector(
@@ -179,9 +195,6 @@ class _SignUpPageState extends State<SignUpPage> {
                   ),
                 ),
               ),
-
-              const SizedBox(height: 20,),
-
             ],
           ),
         ),
