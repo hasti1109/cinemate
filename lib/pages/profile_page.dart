@@ -1,3 +1,5 @@
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
@@ -9,6 +11,43 @@ class ProfilePage extends StatelessWidget {
 
   final List <String> statsName = ['Tv Time', 'Episodes Watched', 'Top Tv Genre','Movie Time', 'Movies Watched', 'Top Movie Genre'];
   final List <String> statsDetails = ['48 hours', '120','KDrama', '150 hours', '79', 'Fiction'];
+
+
+  void logUserOut(BuildContext context){
+    showDialog(
+      context: context,
+      builder: (context) {
+        return AlertDialog(
+          backgroundColor: Theme.of(context).colorScheme.background,
+          title: Center(
+            child: Text(
+              "Are you sure you want to log out?",
+              style: TextStyle(fontSize: 15),
+            ),
+          ),
+          actions: <Widget>[
+            Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: GestureDetector(
+                  onTap: (){
+                    Navigator.of(context).pop();
+                    FirebaseAuth.instance.signOut();
+                    },
+                  child: Text('Yes'),
+              ),
+            ),
+            Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: GestureDetector(
+                onTap: (){Navigator.of(context).pop();},
+                child: Text('Cancel'),
+              ),
+            ),
+          ],
+        );
+      },
+    );
+  }
 
   ProfilePage({super.key});
 
@@ -63,7 +102,7 @@ class ProfilePage extends StatelessWidget {
                       ],
                     ),
 
-                    const SizedBox(width: 63,),
+                    const SizedBox(width: 60,),
 
                     //settings button
                     IconButton(
@@ -113,6 +152,24 @@ class ProfilePage extends StatelessWidget {
             MyProfileList(title: 'Themes', iconData: Icons.color_lens,),
             MyProfileList(title: 'Help', iconData: Icons.help,),
             MyProfileList(title: 'About', iconData: Icons.info,),
+
+            GestureDetector(
+              onTap: () => logUserOut(context),
+              child: Padding(
+                padding: const EdgeInsets.fromLTRB(12,5,12,5),
+                child: Container(
+                  padding: EdgeInsets.all(12),
+                  decoration: BoxDecoration(
+                      color: Colors.grey.shade200,
+                      borderRadius: BorderRadius.circular(12)
+                  ),
+                  child: ListTile(
+                    leading: Icon(Icons.logout, color: Colors.redAccent,),
+                    title: Text('Logout', style: TextStyle(color: Colors.redAccent),),
+                  ),
+                ),
+              ),
+            )
             ]
         ),
       )
