@@ -1,4 +1,5 @@
 
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import '../utilities/my_textfields.dart';
@@ -16,38 +17,71 @@ class _LoginPageState extends State<LoginPage> {
   final _emailController = TextEditingController();
   final _passwordController = TextEditingController();
 
-  /*
-  Future<void> logIn(BuildContext context) async {
+  //method to login user
+  void logUserIn() async {
+    // show loading circle
+    showDialog(
+      context: context,
+      builder: (context) {
+        return const Center(
+          child: CircularProgressIndicator(),
+        );
+      },
+    );
+
+    // try sign in
     try {
-      UserCredential userCredential = await FirebaseAuth.instance.signInWithEmailAndPassword(
+      await FirebaseAuth.instance.signInWithEmailAndPassword(
         email: _emailController.text,
         password: _passwordController.text,
       );
+      // pop the loading circle
+      Navigator.pop(context);
+    }
 
-      if (userCredential.user != null) {
-        Navigator.pushReplacement(
-          context,
-          MaterialPageRoute(builder: (context) => HomePage()),
-        );
-      }
-    } catch (e) {
-      print('Login failed: $e');
-      ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(
-          content: Text('Login failed. Please try again.'),
-        ),
-      );
+    on FirebaseAuthException catch (e) {
+        // pop the loading circle
+        Navigator.pop(context);
+        //print(e.code);
+
+        // WRONG EMAIL
+        if (e.code == 'invalid-email') {
+          showErrorMessage('Invalid email id');
+        }
+        // WRONG PASSWORD
+        else if (e.code == 'wrong-password') {
+            showErrorMessage("Incorrect Password");
+        }
+        else {
+          showErrorMessage("Incorrect email or password");
+        }
     }
   }
 
-
-  @override
-  void dispose(){
-    _emailController.dispose();
-    _passwordController.dispose();
-    super.dispose();
+  void showErrorMessage(String message) {
+    showDialog(
+      context: context,
+      builder: (context) {
+        return AlertDialog(
+          backgroundColor: Theme.of(context).colorScheme.background,
+          title: Center(
+            child: Text(
+              message,
+              style: TextStyle(fontSize: 15),
+            ),
+          ),
+          actions: <Widget>[
+            Center(
+              child: GestureDetector(
+                onTap: (){Navigator.of(context).pop();},
+                child: Text('Ok'),
+              ),
+            )
+          ],
+        );
+      },
+    );
   }
-  */
 
 
   @override
@@ -94,7 +128,7 @@ class _LoginPageState extends State<LoginPage> {
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 25.0),
               child: GestureDetector(
-                onTap: () => Navigator.pushNamed(context, '/homepage'),
+                onTap: logUserIn,
                 child: Container(
                   padding: EdgeInsets.all(16.0),
                   decoration: BoxDecoration(
