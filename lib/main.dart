@@ -1,19 +1,28 @@
-import 'package:cinemate/pages/home_page.dart';
-import 'package:cinemate/pages/intro_page.dart';
-import 'package:cinemate/pages/lists_page.dart';
-import 'package:cinemate/pages/login_page.dart';
-import 'package:cinemate/pages/movies_shows_page.dart';
-import 'package:cinemate/pages/profile_page.dart';
-import 'package:cinemate/pages/signup_page.dart';
-import 'package:cinemate/themes/light_mode.dart';
+import 'package:cinemate/pages/auth_page.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:firebase_core/firebase_core.dart';
+import 'firebase_options.dart';
 
+import 'pages/home_page.dart';
+import 'pages/intro_page.dart';
+import 'pages/lists_page.dart';
+import 'pages/login_page.dart';
+import 'pages/movies_shows_page.dart';
+import 'pages/profile_page.dart';
+import 'pages/signup_page.dart';
+import 'themes/light_mode.dart';
 import 'models/lists.dart';
 import 'models/movies_shows.dart';
 
 
-void main() {
+void main() async{
+
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp(
+    options: DefaultFirebaseOptions.currentPlatform,
+  );
+
   runApp(
       MultiProvider(
         providers: [
@@ -32,7 +41,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      home: const IntroPage(),
+      home: AuthPage(),
       theme: lightMode,
       routes: {
         '/loginpage' : (context) => LoginPage(),
