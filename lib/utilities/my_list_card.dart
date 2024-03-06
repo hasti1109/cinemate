@@ -9,7 +9,7 @@ import 'my_detailed_list.dart';
 class MyListCard extends StatelessWidget {
 
   final String listName;
-  final Icon icon;
+  final IconData icon;
   final List<Media> currentList;
 
   const MyListCard({super.key, required this.listName, required this.icon, required this.currentList});
@@ -71,7 +71,7 @@ class MyListCard extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               Icon(
-                Icons.list,
+                icon,
                 color: Theme.of(context).colorScheme.inversePrimary,
                 size: 28,
               ),

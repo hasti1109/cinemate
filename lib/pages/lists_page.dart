@@ -1,12 +1,15 @@
+
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
-import '../models/movies_shows.dart';
-import '../utilities/my_newlist_dialog_box.dart';
-import '/models/lists_model.dart';
 import 'package:provider/provider.dart';
+import 'package:google_fonts/google_fonts.dart';
+
+import '../utilities/my_newlist_dialog_box.dart';
+import '../utilities/my_list_card.dart';
+
+import '../models/lists_model.dart';
 import '../models/lists.dart';
 import '../models/media_model.dart';
-import '../utilities/my_list_card.dart';
+import '../models/movies_shows.dart';
 
 
 class ListsPage extends StatefulWidget {
@@ -106,11 +109,11 @@ class _ListsPageState extends State<ListsPage> {
                   if (index < 2){
                     final List<Media> currentList = index == 0 ? watchList : watchedList;
                     final String listName = index == 0 ? 'My Watch List' : 'Watched';
-                    return MyListCard(listName: listName, icon: const Icon(Icons.check), currentList: currentList);
+                    return MyListCard(listName: listName, icon:  Icons.check, currentList: currentList);
                   }
                   else {
                     final ListModel customList = customLists[index-2];
-                    return MyListCard(listName: customList.name, icon: const Icon(Icons.list), currentList: customList.myList);
+                    return MyListCard(listName: customList.name, icon: Icons.list, currentList: customList.myList);
                   }
                 },
               ),
