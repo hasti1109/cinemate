@@ -1,17 +1,22 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:google_fonts/google_fonts.dart';
-
+import '../utilities/my_profile_card.dart';
 import '../utilities/my_profile_list_item.dart';
 import '../utilities/my_statistics_card.dart';
 
 
 class ProfilePage extends StatelessWidget {
 
+  ProfilePage({super.key});
+
+  final String userName = "Hasti Gabani";
+  final emailId = FirebaseAuth.instance.currentUser!.email!;
+
   final List <String> statsName = ['Tv Time', 'Episodes Watched', 'Top Tv Genre','Movie Time', 'Movies Watched', 'Top Movie Genre'];
   final List <String> statsDetails = ['48 hours', '120','KDrama', '150 hours', '79', 'Fiction'];
-
 
   void logUserOut(BuildContext context){
     showDialog(
@@ -19,7 +24,7 @@ class ProfilePage extends StatelessWidget {
       builder: (context) {
         return AlertDialog(
           backgroundColor: Theme.of(context).colorScheme.background,
-          title: Center(
+          title: const Center(
             child: Text(
               "Are you sure you want to log out?",
               style: TextStyle(fontSize: 15),
@@ -33,14 +38,14 @@ class ProfilePage extends StatelessWidget {
                     Navigator.of(context).pop();
                     FirebaseAuth.instance.signOut();
                     },
-                  child: Text('Yes'),
+                  child: const Text('Yes'),
               ),
             ),
             Padding(
               padding: const EdgeInsets.all(8.0),
               child: GestureDetector(
                 onTap: (){Navigator.of(context).pop();},
-                child: Text('Cancel'),
+                child: const Text('Cancel'),
               ),
             ),
           ],
@@ -48,8 +53,6 @@ class ProfilePage extends StatelessWidget {
       },
     );
   }
-
-  ProfilePage({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -60,59 +63,7 @@ class ProfilePage extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
 
-            Padding(
-              padding: const EdgeInsets.all(12.0),
-              child: Container(
-                padding: EdgeInsets.all(15),
-                height: 120,
-                width: MediaQuery.of(context).size.width - 30,
-                decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(12),
-                    color: Theme.of(context).colorScheme.primary
-                ),
-                child: Row(
-                  children: [
-                    //user profile pic
-                    const SizedBox(
-                      height: 70,
-                      width: 70,
-                      child: CircleAvatar(
-                        radius: 50,
-                        backgroundImage: AssetImage('assets/profile.png'),
-                      ),
-                    ),
-                    const SizedBox(width: 15,),
-
-                    //name and user name
-                    Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Text(
-                          'Hasti Gabani',
-                          style: GoogleFonts.lato(fontSize: 22, color: Theme.of(context).colorScheme.inversePrimary),
-                        ),
-
-                        const SizedBox(height: 5,),
-
-                        Text(
-                          'hastigabani1109',
-                          style: GoogleFonts.lato(fontSize: 13, color: Colors.black),
-                        )
-                      ],
-                    ),
-
-                    const SizedBox(width: 60,),
-
-                    //settings button
-                    IconButton(
-                      icon: Icon(Icons.settings),
-                      color: Theme.of(context).colorScheme.inversePrimary,
-                      onPressed: () {  },)
-                  ],
-                ),
-              ),
-            ),
+            MyProfileCard(userName: userName, emailId: emailId,),
 
             const SizedBox(
               height: 15,
