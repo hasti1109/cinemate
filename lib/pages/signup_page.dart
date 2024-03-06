@@ -1,3 +1,4 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import '../utilities/my_textfields.dart';
@@ -12,42 +13,65 @@ class SignUpPage extends StatefulWidget {
 
 class _SignUpPageState extends State<SignUpPage> {
 
-  final _nameController  = TextEditingController();
+  final _confirmPasswordController  = TextEditingController();
   final _emailController = TextEditingController();
   final _passwordController = TextEditingController();
 
-  /*
-  Future<void> signUp(BuildContext context) async {
-
-    try {
-      UserCredential userCredential = await FirebaseAuth.instance.createUserWithEmailAndPassword(
-        email: _emailController.text,
-        password: _passwordController.text,
-      );
-
-      if (userCredential.user != null) {
-        Navigator.pushReplacement(
-          context,
-          MaterialPageRoute(builder: (context) => HomePage()),
+  void signUserUp() async{
+    //loading circle
+    showDialog(
+      context: context,
+      builder: (context) {
+        return const Center(
+          child: CircularProgressIndicator(),
         );
       }
-    } catch (e) {
-      //print('Signup failed: $e');
-      ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(
-          content: Text('Signup failed. Please try again.'),
-        ),
-      );
+    );
+
+    try{
+      if (_passwordController.text == _confirmPasswordController.text){
+        await FirebaseAuth.instance.createUserWithEmailAndPassword(
+          email: _emailController.text,
+          password: _passwordController.text,
+        );
+        Navigator.pop(context);
+      }
+      else{
+        Navigator.pop(context);
+        showErrorMessage('Passwords do not match.');
+      }
+    }
+    on FirebaseAuthException catch (e){
+      // pop the loading circle
+      Navigator.pop(context);
+      showErrorMessage(e.code);
     }
   }
 
-  @override
-  void dispose() {
-    _nameController.dispose();
-    _emailController.dispose();
-    _passwordController.dispose();
-    super.dispose();
-  }*/
+  void showErrorMessage(String message) {
+    showDialog(
+      context: context,
+      builder: (context) {
+        return AlertDialog(
+          backgroundColor: Theme.of(context).colorScheme.background,
+          title: Center(
+            child: Text(
+              message,
+              style: TextStyle(fontSize: 15),
+            ),
+          ),
+          actions: <Widget>[
+            Center(
+              child: GestureDetector(
+                onTap: (){Navigator.of(context).pop();},
+                child: Text('Ok'),
+              ),
+            )
+          ],
+        );
+      },
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -65,24 +89,24 @@ class _SignUpPageState extends State<SignUpPage> {
               Text('Create an account',
                 style: GoogleFonts.lexend(
                   fontSize: 30,
-                  fontWeight: FontWeight.bold
+                  fontWeight: FontWeight.w600
                 ),
               ),
 
               const SizedBox(height: 40,),
 
               //name input
-              MyTextField(myController: _nameController, inputName: 'Name', hideText: false, onChanged: (){}),
-
-              const SizedBox(height: 20,),
-
-              //email input
               MyTextField(myController: _emailController, inputName: 'Email', hideText: false, onChanged: (){}),
 
               const SizedBox(height: 20,),
 
+              //email input
+              MyTextField(myController: _passwordController, inputName: 'Create password', hideText: true, onChanged: (){}),
+
+              const SizedBox(height: 20,),
+
               //password input
-              MyTextField(myController: _passwordController, inputName: 'Create Password', hideText: true, onChanged: (){}),
+              MyTextField(myController: _confirmPasswordController, inputName: 'Confirm password', hideText: true, onChanged: (){}),
 
               const SizedBox(height: 30,),
 
@@ -90,9 +114,7 @@ class _SignUpPageState extends State<SignUpPage> {
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 25.0),
                 child: GestureDetector(
-                  onTap: () => (){
-                    Navigator.pushNamed(context, '/homepage');
-                  },
+                  onTap: signUserUp,
                   child: Container(
                     padding: EdgeInsets.all(16.0),
                     decoration: BoxDecoration(
