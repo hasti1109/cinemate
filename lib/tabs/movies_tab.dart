@@ -1,15 +1,14 @@
+import '../utilities/my_media_tile.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import '/utilities/my_media_tile.dart';
 import 'package:provider/provider.dart';
-
 import '../models/movies_shows.dart';
 
 class MoviesTab extends StatelessWidget {
   MoviesTab({super.key});
 
   final List <String> genres = [
-    'Sci-Fi', 'Anime' , 'Thriller', 'Horror'
+    'Sci-Fi', 'Animated' , 'Horror', 'Thriller'
   ];
 
   @override
