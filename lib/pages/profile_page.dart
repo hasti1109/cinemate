@@ -72,8 +72,8 @@ class ProfilePage extends StatelessWidget {
             Padding(
               padding: const EdgeInsets.fromLTRB(12, 0, 0 ,0),
               child: Text(
-                'Stats',
-                style: GoogleFonts.nunitoSans(fontSize: 25,fontWeight: FontWeight.bold),
+                'My Stats',
+                style: GoogleFonts.nunitoSans(fontSize: 20,fontWeight: FontWeight.bold),
               ),
             ),
             SizedBox(
@@ -100,7 +100,7 @@ class ProfilePage extends StatelessWidget {
             MyProfileList(title: 'Privacy', iconData: Icons.lock,),
             MyProfileList(title: 'Recommendations', iconData: Icons.recommend),
             MyProfileList(title: 'Notifications',iconData: Icons.notifications,),
-            MyProfileList(title: 'Themes', iconData: Icons.color_lens,),
+            //MyProfileList(title: 'Themes', iconData: Icons.color_lens,),
             MyProfileList(title: 'Help', iconData: Icons.help,),
             MyProfileList(title: 'About', iconData: Icons.info,),
 
@@ -114,7 +114,7 @@ class ProfilePage extends StatelessWidget {
                       color: Colors.grey.shade200,
                       borderRadius: BorderRadius.circular(12)
                   ),
-                  child: ListTile(
+                  child: const ListTile(
                     leading: Icon(Icons.logout, color: Colors.redAccent,),
                     title: Text('Logout', style: TextStyle(color: Colors.redAccent),),
                   ),

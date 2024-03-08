@@ -1,6 +1,8 @@
+import '../models/movies_shows.dart';
+import '../models/media_model.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import '../models/media_model.dart';
+import 'package:provider/provider.dart';
 import 'my_bottom_sheet.dart';
 
 class MediaDetailedView extends StatefulWidget {
@@ -14,6 +16,18 @@ class MediaDetailedView extends StatefulWidget {
 }
 
 class _MediaDetailedViewState extends State<MediaDetailedView> {
+
+  void showSnackBar(String message){
+    final snackBar = SnackBar(
+      content: Padding(
+        padding: const EdgeInsets.all(10.0),
+        child: Text(message, style: const TextStyle(fontSize: 15,color: Colors.black),),
+      ),
+      duration: const Duration(seconds: 2),
+      backgroundColor: Theme.of(context).colorScheme.background,
+    );
+    ScaffoldMessenger.of(context).showSnackBar(snackBar);
+  }
 
   bool isFavorited = false;
 
@@ -150,7 +164,13 @@ class _MediaDetailedViewState extends State<MediaDetailedView> {
                       Column(children: [Icon(Icons.notifications_none_outlined,), Text('Reminders')],),
 
                       //watchlist
-                      Column(children: [Icon(Icons.bookmark_border), Text('Watchlist')],),
+                      GestureDetector(
+                        onTap: () {
+                          context.read<Medias>().addToWatchlist(widget.media);
+                          showSnackBar('Added to Watchlist!');
+                          },
+                          child: const Column(children: [Icon(Icons.bookmark_border), Text('Watchlist')],)
+                      ),
 
                       //my lists
                       GestureDetector(
@@ -164,7 +184,13 @@ class _MediaDetailedViewState extends State<MediaDetailedView> {
                       ),
 
                       //watched
-                      Column(children: [Icon(Icons.check), Text('Watched')],),
+                      GestureDetector(
+                        onTap: () {
+                          context.read<Medias>().addToWatchedList(widget.media);
+                          showSnackBar('Marked as Watched!');
+                        },
+                          child: const Column(children: [Icon(Icons.check), Text('Watched')],)
+                      ),
                     ],
                   ),
                 ),
@@ -191,7 +217,7 @@ class _MediaDetailedViewState extends State<MediaDetailedView> {
                 ),
               ),
 
-              Padding(
+              const Padding(
                 padding: EdgeInsets.fromLTRB(15,10,15,10),
                 child: Divider(height: 1,),
               ),
@@ -259,7 +285,7 @@ class _MediaDetailedViewState extends State<MediaDetailedView> {
                         padding: const EdgeInsets.all(5.0),
                         child:  Column(
                           children: [
-                            SizedBox(
+                            const SizedBox(
                               height: 60,
                               width: 60,
                               child: CircleAvatar(
@@ -269,16 +295,15 @@ class _MediaDetailedViewState extends State<MediaDetailedView> {
                             ),
                             Container(
                                 width: MediaQuery.of(context).size.width/4,
-                                child: Center(child: Text('Name Surname')))
+                                child: const Center(child: Text('Name Surname'))
+                            )
                           ],
-
                         ),
                       );
                     },
                   ),
-                ),)
-
-
+                ),
+              )
             ],
           ),
         )

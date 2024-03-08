@@ -14,7 +14,7 @@ class MyDialogBox extends StatelessWidget {
   Widget build(BuildContext context) {
 
     return AlertDialog(
-      title: Text(
+      title: const Text(
         'Add to your list?',
         style: TextStyle(fontSize: 15),
       ),

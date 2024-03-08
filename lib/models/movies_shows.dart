@@ -36,13 +36,20 @@ class Medias extends ChangeNotifier{
     Media(name: 'Superstore', year: '2015', rating: '7.9', imgPath: 'assets/superstore.jpg', genre: 'Sitcom'),
     Media(name: 'Community', year: '2009', rating: '8.5', imgPath: 'assets/community.jpg', genre: 'Sitcom'),
     Media(name: 'The Good Place', year: '2016', rating: '8.7', imgPath: 'assets/goodplace.jpg', genre: 'Sitcom'),
-    Media(name: 'Breaking Bad', rating: '9.3', imgPath: 'assets/breakingbad.jpg', genre: 'Crime Thriller', year:'2008'),
+    Media(name: 'Breaking Bad', rating: '9.3', imgPath: 'assets/breakingbad.jpg', genre: 'Thriller', year:'2008'),
+    Media(name: 'The Haunting of Hill House', rating: '8.3', imgPath: 'assets/haunting.jpg', genre: 'Thriller', year:'2018'),
+    Media(name: 'Alice in Borderland', rating: '7.7', imgPath: 'assets/alice.jpg', genre: 'Thriller', year:'2020'),
+    Media(name: 'Stranger Things', rating: '9.3', imgPath: 'assets/stranger.jpg', genre: 'Thriller', year:'2016'),
+    Media(name: 'Squid Game', rating: '8.0', imgPath: 'assets/squidgame.jpg', genre: 'KDrama', year:'2021'),
     Media(name: 'My Demon', rating: '8.5', imgPath: 'assets/mydemon.jpg', genre: 'KDrama', year:'2023'),
     Media(name: 'Our Beloved Summer', rating: '8.9', imgPath: 'assets/obs.jpg', genre: 'KDrama', year:'2022'),
     Media(name: 'Attack on Titan', rating: '9.0', imgPath: 'assets/aot.jpg', genre: 'Anime', year:'2012'),
+    Media(name: 'Pluto', rating: '9.1', imgPath: 'assets/pluto.jpg', genre: 'Anime', year:'2004'),
+    Media(name: 'Monster', rating: '9.3', imgPath: 'assets/monster.jpg', genre: 'Anime', year:'2023'),
     Media(name: 'Jujutsu Kaisen', rating: '9.0', imgPath: 'assets/jjk.jpg', genre: 'Anime', year:'2022'),
-    Media(name: 'Haikyuu!', rating: '9.0', imgPath: 'assets/haikyu.jpg', genre: 'Anime', year:'2016'),
-    Media(name: 'Game Of Thrones', rating: '9.0', imgPath: 'assets/got.jpg', genre: 'Fantasy', year:'2010'),
+    Media(name: 'Haikyuu!', rating: '8.5', imgPath: 'assets/haikyu.jpg', genre: 'Anime', year:'2016'),
+    Media(name: 'Game Of Thrones', rating: '9.0', imgPath: 'assets/got.jpg', genre: 'Fiction', year:'2010'),
+    Media(name: 'Shadow and Bone', rating: '7.5', imgPath: 'assets/sab.jpg', genre: 'Fiction', year:'2021'),
   ];
 
 

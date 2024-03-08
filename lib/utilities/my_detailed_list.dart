@@ -55,20 +55,12 @@ class ListDetailView extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        actions: <Widget>[
-          IconButton(
-            icon: Icon(
-              Icons.more_vert,
-              color: Theme.of(context).colorScheme.inversePrimary,
-            ),
-            onPressed: () {}
-          ),
-        ],
         title: Text(
           listName,
+          overflow: TextOverflow.ellipsis,
           style:  GoogleFonts.lato(
               color: Theme.of(context).colorScheme.inversePrimary,
-              fontSize: 22,
+              fontSize: 20,
               fontWeight: FontWeight.w800
           ),
         ),

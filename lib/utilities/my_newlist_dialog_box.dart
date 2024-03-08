@@ -20,19 +20,12 @@ class NewListDialogBox extends StatelessWidget {
             SizedBox(
               width: 240,
               child: TextField(
+                cursorColor: Colors.black,
                 controller: listController,
                 decoration: InputDecoration(
                   hintText: "List Name",
                   hintStyle: TextStyle(color: Theme.of(context).colorScheme.inversePrimary),
-                  enabledBorder: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(15),
-                      borderSide: BorderSide(
-                        color: Theme.of(context).colorScheme.inversePrimary,
-                        width: 1.0,
-                      )
-                  ),
-                  focusedBorder: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(15),
+                  focusedBorder: UnderlineInputBorder(
                       borderSide: BorderSide(
                         color: Theme.of(context).colorScheme.inversePrimary,
                         width: 1.0,

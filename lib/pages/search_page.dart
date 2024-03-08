@@ -33,78 +33,81 @@ class _SearchPageState extends State<SearchPage> {
     bool isComingFromList = widget.isComingFromList;
 
     return SafeArea(
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          const SizedBox(height: 20,),
+      child: Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 5),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            const SizedBox(height: 20,),
 
-          //top text
-          Padding(
-            padding: const EdgeInsets.all(12.0),
-            child: Text(
-              'Search for a movie or a show',
-              style: GoogleFonts.lato(
-                color: Theme.of(context).colorScheme.inversePrimary,
-                fontSize: 22,
-                fontWeight: FontWeight.w800
-              ),
-            ),
-          ),
-
-          //Search Bar
-          Padding(
-            padding: const EdgeInsets.all(12.0),
-            child: TextField(
-              onChanged: (value) {
-                setState(() {
-                  displayList = combinedList.where( (element) => element.name.toLowerCase().contains(value.toLowerCase())).toList();
-                });
-              },
-              cursorColor: Theme.of(context).colorScheme.inversePrimary,
-              style: GoogleFonts.lato(color: Colors.black),
-              decoration: InputDecoration(
-                fillColor: Theme.of(context).colorScheme.primary,
-                filled: true,
-                border: OutlineInputBorder(
-                  borderRadius: BorderRadius.circular(12),
-                  borderSide: BorderSide.none,
+            //top text
+            Padding(
+              padding: const EdgeInsets.all(12.0),
+              child: Text(
+                'Search for a movie or a show',
+                style: GoogleFonts.lato(
+                  color: Theme.of(context).colorScheme.inversePrimary,
+                  fontSize: 22,
+                  fontWeight: FontWeight.w800
                 ),
-                hintText: "eg: The Dark Knight",
-                hintStyle: TextStyle(color: Theme.of(context).colorScheme.inversePrimary),
-                prefixIcon: Icon(Icons.search,color: Theme.of(context).colorScheme.inversePrimary,),
-                prefixIconColor: Theme.of(context).colorScheme.secondary,
               ),
             ),
-          ),
 
-          const SizedBox(height: 20,),
-
-          //list of all movies and shows
-          Expanded(
-            child: ListView.builder(
-              itemCount: displayList.length,
-              itemBuilder: (context, index) => GestureDetector(
-                onTap: (){
-                  if (isComingFromList){
-                    addToList(context, displayList[index]);
-                  }
-                  else{
-                    Navigator.push(context,
-                        MaterialPageRoute(builder: (context) => MediaDetailedView(media: displayList[index]))
-                    );
-                  }
+            //Search Bar
+            Padding(
+              padding: const EdgeInsets.all(12.0),
+              child: TextField(
+                onChanged: (value) {
+                  setState(() {
+                    displayList = combinedList.where( (element) => element.name.toLowerCase().contains(value.toLowerCase())).toList();
+                  });
                 },
-                child: ListTile(
-                  contentPadding: EdgeInsets.all(12),
-                  title: Text(displayList[index].name, style: TextStyle(fontWeight: FontWeight.bold),),
-                  subtitle: Text(displayList[index].year,),
-                  trailing: Text(displayList[index].rating, style: TextStyle(color: Colors.amber, fontSize: 15),),
-                  leading: Image.asset(displayList[index].imgPath),
+                cursorColor: Theme.of(context).colorScheme.inversePrimary,
+                style: GoogleFonts.lato(color: Colors.black),
+                decoration: InputDecoration(
+                  fillColor: Theme.of(context).colorScheme.primary,
+                  filled: true,
+                  border: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(15),
+                    borderSide: BorderSide.none,
+                  ),
+                  hintText: "eg: Interstellar",
+                  hintStyle: TextStyle(color: Theme.of(context).colorScheme.inversePrimary),
+                  prefixIcon: Icon(Icons.search,color: Theme.of(context).colorScheme.inversePrimary,),
+                  prefixIconColor: Theme.of(context).colorScheme.secondary,
                 ),
               ),
             ),
-          ),
-        ],
+
+            const SizedBox(height: 20,),
+
+            //list of all movies and shows
+            Expanded(
+              child: ListView.builder(
+                itemCount: displayList.length,
+                itemBuilder: (context, index) => GestureDetector(
+                  onTap: (){
+                    if (isComingFromList){
+                      addToList(context, displayList[index]);
+                    }
+                    else{
+                      Navigator.push(context,
+                          MaterialPageRoute(builder: (context) => MediaDetailedView(media: displayList[index]))
+                      );
+                    }
+                  },
+                  child: ListTile(
+                    contentPadding: EdgeInsets.all(12),
+                    title: Text(displayList[index].name, style: TextStyle(fontWeight: FontWeight.bold),),
+                    subtitle: Text(displayList[index].year,),
+                    trailing: Text(displayList[index].rating, style: TextStyle(color: Colors.amber, fontSize: 15),),
+                    leading: Image.asset(displayList[index].imgPath),
+                  ),
+                ),
+              ),
+            ),
+          ],
+        ),
       )
     );
   }

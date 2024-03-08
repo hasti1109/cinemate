@@ -114,14 +114,14 @@ class _MyProfileCardState extends State<MyProfileCard> {
             ),
             const SizedBox(width: 15,),
 
-            //name and user name
+            //name and email id
             Column(
               mainAxisAlignment: MainAxisAlignment.center,
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
                   widget.userName,
-                  style: GoogleFonts.lato(fontSize: 22, color: Theme.of(context).colorScheme.inversePrimary),
+                  style: GoogleFonts.lato(fontSize: 22,fontWeight: FontWeight.w500 ,color: Theme.of(context).colorScheme.inversePrimary,),
                 ),
 
                 const SizedBox(height: 5,),

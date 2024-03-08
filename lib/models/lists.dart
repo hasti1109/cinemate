@@ -4,8 +4,8 @@ import 'media_model.dart';
 
 class MyLists extends ChangeNotifier{
   List<ListModel> _customLists =[
-    ListModel(name: 'kdrama', myList: []),
-    ListModel(name: 'anime', myList: [])
+    ListModel(name: 'favourites', myList: []),
+    ListModel(name: 'top 10 movies', myList: [])
   ];
 
   List <ListModel> get customLists => _customLists;

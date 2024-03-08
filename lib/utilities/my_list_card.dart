@@ -58,7 +58,7 @@ class MyListCard extends StatelessWidget {
         borderRadius: BorderRadius.circular(12),
       ),
       child: InkWell(
-        onLongPress: (){deleteList(context, customLists, listName);},
+        onLongPress: () => deleteList(context, customLists, listName),
         onTap: () {
           Navigator.push(
             context,
@@ -77,6 +77,8 @@ class MyListCard extends StatelessWidget {
               ),
               Text(
                 listName,
+                maxLines: 2,
+                overflow: TextOverflow.ellipsis,
                 style: GoogleFonts.robotoCondensed(
                   fontSize: 17,
                   fontWeight: FontWeight.bold,

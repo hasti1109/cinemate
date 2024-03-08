@@ -7,7 +7,7 @@ import '../utilities/my_media_tile.dart';
 class ShowsTab extends StatelessWidget {
   ShowsTab({super.key});
 
-  final List <String> genres = ['Sitcom','Crime Thriller', 'KDrama' , 'Anime', 'Fantasy'];
+  final List <String> genres = ['Sitcom','Thriller', 'KDrama' , 'Anime', 'Fiction'];
 
   @override
   Widget build(BuildContext context) {
