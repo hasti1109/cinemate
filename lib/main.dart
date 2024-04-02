@@ -16,6 +16,8 @@ import 'models/lists.dart';
 import 'models/movies_shows.dart';
 
 
+bool isDarkMode = true;
+
 void main() async{
 
   WidgetsFlutterBinding.ensureInitialized();
@@ -29,13 +31,14 @@ void main() async{
           ChangeNotifierProvider(create: (context) => Medias()),
           ChangeNotifierProvider(create: (context) => MyLists())
         ],
-        child: const MyApp(),
+        child: MyApp(),
       )
   );
 }
 
 class MyApp extends StatelessWidget {
-  const MyApp ({super.key});
+
+  MyApp ({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -43,6 +46,8 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       home: AuthPage(),
       theme: lightMode,
+      darkTheme: darkMode,
+      themeMode: isDarkMode? ThemeMode.dark : ThemeMode.light,
       routes: {
         '/loginpage' : (context) => LoginPage(),
         '/signuppage' : (context) => SignUpPage(),
@@ -51,6 +56,51 @@ class MyApp extends StatelessWidget {
         '/listspage' : (context) => ListsPage(),
         '/profilepage' : (context) => ProfilePage(),
       },
+    );
+  }
+}
+
+
+
+class ThemeChangePage extends StatefulWidget {
+
+  @override
+  State<ThemeChangePage> createState() => _ThemeChangePageState();
+}
+
+class _ThemeChangePageState extends State<ThemeChangePage> {
+  // Function to toggle theme
+  void toggleTheme(bool isDark) {
+    setState((){
+      isDarkMode = isDark;
+    });
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: Text('Change Theme'),
+      ),
+      body: Center(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: <Widget>[
+            ElevatedButton(
+              onPressed: () {
+                toggleTheme(false); // Light theme
+              },
+              child: Text('Light Theme'),
+            ),
+            ElevatedButton(
+              onPressed: () {
+                toggleTheme(true); // Dark theme
+              },
+              child: Text('Dark Theme'),
+            ),
+          ],
+        ),
+      ),
     );
   }
 }

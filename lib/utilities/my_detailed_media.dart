@@ -21,7 +21,7 @@ class _MediaDetailedViewState extends State<MediaDetailedView> {
     final snackBar = SnackBar(
       content: Padding(
         padding: const EdgeInsets.all(10.0),
-        child: Text(message, style: const TextStyle(fontSize: 15,color: Colors.black),),
+        child: Text(message, style: TextStyle(fontSize: 15,color: Theme.of(context).colorScheme.inversePrimary),),
       ),
       duration: const Duration(seconds: 2),
       backgroundColor: Theme.of(context).colorScheme.background,
@@ -36,7 +36,7 @@ class _MediaDetailedViewState extends State<MediaDetailedView> {
     return SafeArea(
       child: Scaffold(
         appBar: AppBar(title: Text('Details'),),
-        backgroundColor: Theme.of(context).colorScheme.primary,
+        backgroundColor: Theme.of(context).colorScheme.background,
         body: SingleChildScrollView(
           scrollDirection: Axis.vertical,
           child: Column(
@@ -150,10 +150,10 @@ class _MediaDetailedViewState extends State<MediaDetailedView> {
                 child: Container(
                   padding: EdgeInsets.all(15),
                   decoration: BoxDecoration(
-                    color: Color(0xFFBFB0EF),
+                    color: Theme.of(context).colorScheme.primary,
                     borderRadius: BorderRadius.circular(12),
                     border: Border.all(
-                      color: Theme.of(context).colorScheme.inversePrimary,
+                      color: Theme.of(context).colorScheme.secondary,
                       width: 1.0,
                     ),
                   ),

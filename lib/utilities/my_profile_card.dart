@@ -53,9 +53,9 @@ class _MyProfileCardState extends State<MyProfileCard> {
                   children: [
                     ElevatedButton(
                       style: ElevatedButton.styleFrom(
-                        foregroundColor: Theme.of(context).colorScheme.inversePrimary, // Background color
-                        backgroundColor: Theme.of(context).colorScheme.background, // Text color
-                        padding: EdgeInsets.symmetric(vertical: 13, horizontal: 25), // Button padding
+                        foregroundColor: Theme.of(context).colorScheme.inversePrimary,
+                        backgroundColor: Theme.of(context).colorScheme.background,
+                        padding: EdgeInsets.symmetric(vertical: 13, horizontal: 25),
                         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20),),
                       ),
                       onPressed: () {
@@ -68,9 +68,9 @@ class _MyProfileCardState extends State<MyProfileCard> {
                     ),
                     ElevatedButton(
                       style: ElevatedButton.styleFrom(
-                        foregroundColor: Theme.of(context).colorScheme.inversePrimary, // Background color
-                        backgroundColor: Theme.of(context).colorScheme.background, // Text color
-                        padding: EdgeInsets.symmetric(vertical: 13, horizontal: 25), // Button padding
+                        foregroundColor: Theme.of(context).colorScheme.inversePrimary,
+                        backgroundColor: Theme.of(context).colorScheme.background,
+                        padding: EdgeInsets.symmetric(vertical: 13, horizontal: 25),
                         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20),),
                       ),
                       onPressed: () {
@@ -121,19 +121,19 @@ class _MyProfileCardState extends State<MyProfileCard> {
               children: [
                 Text(
                   widget.userName,
-                  style: GoogleFonts.lato(fontSize: 22,fontWeight: FontWeight.w500 ,color: Theme.of(context).colorScheme.inversePrimary,),
+                  style: GoogleFonts.lato(fontSize: 22,fontWeight: FontWeight.w600 ,color: Theme.of(context).colorScheme.inversePrimary,),
                 ),
 
                 const SizedBox(height: 5,),
 
                 Text(
                   widget.emailId,
-                  style: GoogleFonts.lato(fontSize: 13, color: Colors.black),
+                  style: GoogleFonts.lato(fontSize: 13, color: Theme.of(context).colorScheme.inversePrimary),
                 )
               ],
             ),
 
-            const SizedBox(width: 62,),
+            const SizedBox(width: 60,),
 
             //settings button
             IconButton(

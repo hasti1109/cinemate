@@ -14,11 +14,11 @@ class MyProfileList extends StatelessWidget {
       child: Container(
         padding: EdgeInsets.all(12),
         decoration: BoxDecoration(
-          color: Colors.grey.shade200,
+          color: Theme.of(context).colorScheme.primary,
           borderRadius: BorderRadius.circular(12)
         ),
         child: ListTile(
-          leading: Icon(iconData, color: Theme.of(context).colorScheme.inversePrimary,),
+          leading: Icon(iconData, color: Theme.of(context).colorScheme.background,),
           title: Text(title),
         ),
       ),

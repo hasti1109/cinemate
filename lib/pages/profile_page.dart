@@ -1,3 +1,4 @@
+import 'package:cinemate/main.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -11,6 +12,7 @@ import '../utilities/my_statistics_card.dart';
 class ProfilePage extends StatelessWidget {
 
   ProfilePage({super.key});
+
 
   final String userName = "Hasti Gabani";
   final emailId = FirebaseAuth.instance.currentUser!.email!;
@@ -52,6 +54,10 @@ class ProfilePage extends StatelessWidget {
         );
       },
     );
+  }
+
+  void changeTheme(){
+    
   }
 
   @override
@@ -100,7 +106,30 @@ class ProfilePage extends StatelessWidget {
             MyProfileList(title: 'Privacy', iconData: Icons.lock,),
             MyProfileList(title: 'Recommendations', iconData: Icons.recommend),
             MyProfileList(title: 'Notifications',iconData: Icons.notifications,),
-            //MyProfileList(title: 'Themes', iconData: Icons.color_lens,),
+
+            GestureDetector(
+              onTap: (){
+                Navigator.push(
+                    context, 
+                    MaterialPageRoute(builder: (context) => ThemeChangePage())
+                );
+              },
+              child: Padding(
+                padding: const EdgeInsets.fromLTRB(12,5,12,5),
+                child: Container(
+                  padding: EdgeInsets.all(12),
+                  decoration: BoxDecoration(
+                      color: Theme.of(context).colorScheme.primary,
+                      borderRadius: BorderRadius.circular(12)
+                  ),
+                  child: ListTile(
+                    leading: Icon(Icons.color_lens_rounded, color: Theme.of(context).colorScheme.background,),
+                    title: Text('Themes',),
+                  ),
+                ),
+              ),
+            ),
+
             MyProfileList(title: 'Help', iconData: Icons.help,),
             MyProfileList(title: 'About', iconData: Icons.info,),
 
@@ -111,7 +140,7 @@ class ProfilePage extends StatelessWidget {
                 child: Container(
                   padding: EdgeInsets.all(12),
                   decoration: BoxDecoration(
-                      color: Colors.grey.shade200,
+                      color: Theme.of(context).colorScheme.primary,
                       borderRadius: BorderRadius.circular(12)
                   ),
                   child: const ListTile(
