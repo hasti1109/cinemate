@@ -1,5 +1,5 @@
 
-**CineMate**
+## CineMate
 
 A movie tracker application that allows users to explore movies and shows based on genre and allows them to log the media they have watched as well as create custom lists to log movies.
 
