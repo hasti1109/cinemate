@@ -1,16 +1,42 @@
-# cinemate
 
-A new Flutter project.
+**CineMate**
 
-## Getting Started
+A movie tracker application that allows users to explore movies and shows based on genre and allows them to log the media they have watched as well as create custom lists to log movies.
 
-This project is a starting point for a Flutter application.
 
-A few resources to get you started if this is your first Flutter project:
+## Run Locally
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+Clone app
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+```bash
+git clone https:github.com/hasti1109/cinemate
+```
+
+Navigate to project directory
+
+```bash
+cd cinemate
+```
+
+Get dependencies
+
+```bash
+gflutter pub get
+```
+
+Run app locally
+
+```bash
+flutter run --debug
+```
+    
+## Tech Stack
+
+**Language:** Dart
+
+**Framework:** Flutter
+
+**Backend:** Cloud Firestore
+
+**Others:** Firebase Authentication
+
