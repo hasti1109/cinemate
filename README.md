@@ -21,7 +21,7 @@ cd cinemate
 Get dependencies
 
 ```bash
-gflutter pub get
+flutter pub get
 ```
 
 Run app locally
